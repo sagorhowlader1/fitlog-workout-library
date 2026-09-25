@@ -1,9 +1,24 @@
-import React from "react";
+'use client';
 import Logo from "@/asstes/logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useContext } from "react";
+import { MyPlanContext } from "@/context/MyPlanContext";
 
-const Navbar = () => {
+
+const Navbar = ({data}) => {
+  // const { addToPlan, saveLater } = useContext(MyPlanContext);
+const { addToPlan, setAddToPlan, saveLater, setSaveLater } = useContext(MyPlanContext);
+
+
+  const handleAddToPlan = () =>{
+    setAddToPlan([...addToPlan, data]);
+  };
+  const handleSaveLater = () =>{
+    setSaveLater([...saveLater, data]);
+  };
+  const pathname = usePathname()
   return (
     <div className="sticky top-0 z-50">
       <div className="bg-[#000000] py-5">
@@ -18,17 +33,30 @@ const Navbar = () => {
               </Link>
             </div>
             <ul className="flex justify-between items-center gap-2">
-              <li className="text-[#C2F800] py-2 px-4 rounded-2xl bg-[#c2f80021]">
-                <Link href="/workouts">Workouts</Link>
+              <li className={pathname === '/'  ? 'text-[#C2F800] py-2 px-4 rounded-2xl bg-[#c2f80021]' : '' }>
+                <Link href="/">Workouts</Link>
               </li>
-              <li className="py-2 px-4 rounded-2xl text-white hover:bg-[#9ca3af2f]">
+              <li className={pathname === `/my-plan` ? 'text-[#C2F800] py-2 px-4 rounded-2xl bg-[#c2f80021]' : '' }>
                 <Link href="/my-plan">My Plan</Link>
               </li>
             </ul>
 
-            <div>
-              <button className="btn btn-success">Plan</button>
-              <button className="btn btn-active">Saved</button>
+            <div className="gap-4">
+                 <Link href="/my-plan">
+                     <button
+                        onClick={() => handleAddToPlan()}
+                        className="btn rounded-xl border-none bg-[#C2F800]"
+                      >Plan {`${addToPlan.length}`}
+                  </button>
+                 </Link>
+                  
+                  <Link href="/my-plan">
+                  <button
+                        onClick={() => handleSaveLater()}
+                        className="btn rounded-xl border-none bg-[#eaebe618] text-white"
+                      >Saved {`${saveLater.length}`}
+                  </button>
+                  </Link>
             </div>
           </div>
         </nav>

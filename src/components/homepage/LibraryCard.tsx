@@ -8,12 +8,17 @@ import { FaFireFlameCurved } from "react-icons/fa6";
 interface ILibraryTypeProps {
   data: ILibraryType;
   id: number;
-}
+};
+
+const getLibraryCard = async() => {
+   const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
+  const data = await res.json();
+  return data;
+};
 
 const LibraryCard = async ({ data }: ILibraryTypeProps) => {
-  const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
-  const datas = await res.json();
-  console.log(datas, "data fetch!!");
+  const libraryCard = await getLibraryCard();
+  console.log(libraryCard, "data fetch!!");
   return (
     <div className="container mx-auto">
       <div className="pt-20">
@@ -24,7 +29,7 @@ const LibraryCard = async ({ data }: ILibraryTypeProps) => {
       </div>
 
       <div className="mt-8 mb-18 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {datas.map((data: ILibraryType, index: number) => (
+        {libraryCard.map((data: ILibraryType, index: number) => (
           <div key={index} className="cursor-pointer">
             <Link href={`/allLibrary/${data.id}`}>
               <div className=" text-white rounded-3xl my-4 mx-4 bg-[#15171D]">

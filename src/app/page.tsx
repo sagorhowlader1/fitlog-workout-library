@@ -7,7 +7,6 @@ export default function Home() {
     <div>
       <Banner />
       <LibraryCard />
-      <h2>HomePage</h2>
     </div>
   );
 }
