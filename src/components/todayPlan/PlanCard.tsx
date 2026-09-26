@@ -3,6 +3,7 @@
 import { MyPlanContext } from "@/context/MyPlanContext";
 import { ILibraryType } from "@/types/type";
 import Image from "next/image";
+import Link from "next/link";
 import { useContext } from "react";
 import { FaRegClock, FaRegStar } from "react-icons/fa";
 import { FaFireFlameCurved, FaXmark } from "react-icons/fa6";
@@ -58,26 +59,26 @@ const PlanCard = ({
 
           <div className="flex gap-6 mt-4">
             <p className="flex  gap-2 items-center text-[#9CA3AF]">
-              <FaRegClock />
+              <FaRegClock className="text-[#C2F800]" />
               {data.duration} min
             </p>
             <p className="flex gap-2 items-center text-[#9CA3AF]">
-              <FaFireFlameCurved />
+              <FaFireFlameCurved className="text-[#C2F800]" />
               {data.caloriesBurned} kcal
             </p>
             <p className="flex justify-between gap-2 items-center text-[#9CA3AF]">
-              <FaRegStar /> {data.rating}
+              <FaRegStar className="text-[#C2F800]" /> {data.rating}
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          <button
+          <Link href={`/allLibrary/${data.id}`}
             className="px-5 py-2  border cursor-pointer border-[#374151] rounded-full
             text-white text-sm"
           >
             View Details
-          </button>
+          </Link>
 
           {!isSaved && (
             <button

@@ -4,7 +4,7 @@ import Logo from "@/asstes/logo.png";
 
 const Footer = () => {
   return (
-    <div>
+    <div className="mt-16">
       <div className="h-px bg-[#9ca3af3f]"></div>
       <div className="bg-[#000000] py-6">
         <div className="container mx-auto">

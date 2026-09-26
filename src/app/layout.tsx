@@ -5,6 +5,7 @@ import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import MyPlanProvider from "@/context/MyPlanContext";
 import { ToastContainer } from "react-toastify";
+import AllLibrary from "./allLibrary/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

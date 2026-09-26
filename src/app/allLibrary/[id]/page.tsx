@@ -1,5 +1,5 @@
 import AddToPlanBtn from "@/components/myPlanDetails/AddToPlan";
-import SeveLater from "@/components/myPlanDetails/SeveLater";
+import SeveLater from "@/components/myPlanDetails/SaveLater";
 import { ILibraryType } from "@/types/type";
 import Image from "next/image";
 
