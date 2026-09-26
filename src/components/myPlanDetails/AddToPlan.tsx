@@ -10,7 +10,6 @@ const AddToPlan = ({ data }: { data: ILibraryType }) => {
   
 
   const handleAddToPlan = () => {
-    // console.log("add to plan triggered!!", data);
     const alreadyAdded = addToPlan.some((item) => item.id === data.id);
     if(alreadyAdded){
       toast.error("Already in your plan",{

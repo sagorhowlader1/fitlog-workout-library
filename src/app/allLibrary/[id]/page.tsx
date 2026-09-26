@@ -27,7 +27,7 @@ const LibarayDetailsPage = async ({ params }: IDetailsPageProps) => {
       <div className="py-10 px-10">
         <div className="card lg:card-side shadow-sm">
           <figure className="rounded-2xl">
-            <Image width={800} height={180} src={data.image} alt="Image" />
+            <Image width={750} height={180} src={data.image} alt="Image" />
           </figure>
           <div className="ml-12">
             <h2 className="text-white text-3xl uppercase font-bold">
@@ -80,21 +80,23 @@ const LibarayDetailsPage = async ({ params }: IDetailsPageProps) => {
                 <p className=""> {data.rating}</p>
               </div>
             </div>
+            <div>
+              <h2 className="uppercase py-2 font-bold ">instructions</h2>
               <div>
-                <h2 className="uppercase py-3 font-bold ">instructions</h2>
-                <div>
-                    {data.instructions.map((instructions, index) => (
-                        <p className="py-2" key={index}>{index + 1}. {instructions}</p>
-                    ))}
-                </div>
+                {data.instructions.map((instructions, index) => (
+                  <p className="py-2" key={index}>
+                    {index + 1}. {instructions}
+                  </p>
+                ))}
               </div>
+            </div>
           </div>
         </div>
-          <div className="card-actions justify-center ml-100 pb-20 pt-8">
-             <AddToPlanBtn data={data} />
+        <div className="card-actions justify-center ml-100 pb-15 pt-4">
+          <AddToPlanBtn data={data} />
 
-              <SeveLater data={data} />
-            </div>
+          <SeveLater data={data} />
+        </div>
       </div>
     </div>
   );

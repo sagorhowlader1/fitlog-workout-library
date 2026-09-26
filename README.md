@@ -3,7 +3,10 @@
 2 Description: I am full project builed and i line by line by handson code. And it technology used Next.js Build the UI, App router(Next.js), Tailwind CSS + Any component libaray Styling and responsiveness and finaely my project deployment on Vercel.
 
 
-3 Technologies Used: 1. Next.js Build the UI 2. App router(Next.js) + Handle page navigation 3. Tailwind CSS + Any component libaray Styling and responsiveness.
+3 Technologies Used: 
+1 Next.js Build the UI 
+2 App router(Next.js) + Handle page navigation 
+3 Tailwind CSS + Any component libaray Styling and responsiveness.
 
 
 

@@ -21,7 +21,7 @@ const Navbar = () => {
               <Link href="/">
                 <span className="flex justify-between items-center gap-3 text-2xl text-white font-bold">
                   <Image src={Logo} width={40} height={40} alt="Logo" />
-                  FITLOG SAGOR
+                  FITLOG
                 </span>
               </Link>
             </div>
