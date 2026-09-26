@@ -1,33 +1,171 @@
 "use client";
+
+import PlanCard from "@/components/todayPlan/PlanCard";
 import { MyPlanContext } from "@/context/MyPlanContext";
-import React, { useContext } from "react";
+import { ILibraryType } from "@/types/type";
+import React, { useContext, useMemo, useState } from "react";
 
 const MyPlan = () => {
   const { addToPlan, saveLater } = useContext(MyPlanContext);
-  console.log(addToPlan, saveLater, "addToPlan, saveLater");
+
+  const [activeTab, setActiveTab] = useState<"today" | "saved">(
+    "today"
+  );
+
+  const [sortBy, setSortBy] = useState<
+    "minutes" | "calories" | "rating"
+  >("minutes");
+
+  const [selectedExercise, setSelectedExercise] = useState<ILibraryType | null>(null);
+
+  const currentPlan = activeTab === "today" ? addToPlan : saveLater;
+
+  const totalMinutes = currentPlan.reduce(
+    (total, item) => total + Number(item.duration),
+    0
+  );
+
+  const totalCalories = currentPlan.reduce(
+    (total, item) => total + Number(item.caloriesBurned),
+    0
+  );
+
+  const exercises = useMemo(() => {
+    const list = 
+    activeTab === "today"
+    ? [...addToPlan] : [...saveLater];
+
+
+    if(sortBy === "minutes") {
+      return list.sort(
+        (a, b) => b.duration - a.duration
+      );
+    }
+
+
+    if(sortBy === "calories") {
+      return list.sort(
+        (a, b) =>
+          b.caloriesBurned - a.caloriesBurned
+      );
+    }
+
+    return list.sort(
+      (a, b) => b.rating - a.rating
+    );
+
+  }, [activeTab, addToPlan, saveLater, sortBy]);
+
+
   return (
     <div className="container mx-auto">
-      <div>
-        <h2 className="uppercase">My Plan</h2>
-        <p>Cap of five lifts for today. Finish them, then load more.</p>
-      </div>
-      AddToPlan: {addToPlan.length} <br /> SaveLater {saveLater.length}
-      {/* name of each tab group should be unique */}
-      <div className="tabs tabs-box text-black">
-        <input
-          type="radio"
-          name="my_tabs_1"
-          className="tab"
-          aria-label={`Today's Plan`}
-          
-        />
-        <input
-          type="radio"
-          name="my_tabs_1"
-          className="tab"
-          aria-label="Saved"
-          defaultChecked
-        />
+      <div className="py-16">
+        <div>
+          <h2 className="uppercase font-bold text-4xl">My Plan</h2>
+          <p className="text-[#9CA3AF] py-2">
+            Cap of five lifts for today. Finish them, then load more.
+          </p>
+        </div>
+
+        <div className="mt-6 border border-[#252a33] bg-[#13161c] rounded-2xl p-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <p className="text-[#9CA3AF]">Exercisec</p>
+              <h2 className="text-[#C2F800] text-4xl font-bold mt-2">
+                {addToPlan.length}
+              </h2>
+            </div>
+
+            <div className="border-y md:border-y-0 md:border-x border-[#252a33] px-0 md:px-8 py-6 md:py-0">
+              <p className="text-[#9CA3AF]">Miuntes</p>
+              <h2 className="text-white text-4xl font-bold mt-2">
+                {totalMinutes}
+              </h2>
+            </div>
+
+            <div>
+              <p className="text-[#9CA3AF]">Calories</p>
+              <h2 className="text-white text-4xl font-bold mt-2">
+                {totalCalories}
+              </h2>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div className="mt-8 flex justify-between items-center">
+          <div className="flex bg-[#171b23] rounded-xl p-1">
+            <button 
+            onClick={() => setActiveTab("today")}
+            className={`px-5 py-2 rounded-lg cursor-pointer ${
+              activeTab === "today" ? "bg-[#252a33] text-white" : "text-[#9CA3AF]"
+            }`}
+            >
+              {`Today's`} Plan
+            </button>
+
+            <button 
+            onClick={() => setActiveTab("saved")}
+            className={`px-5 py-2 rounded-lg cursor-pointer ${
+              activeTab === "saved" ? "bg-[#252a33] text-white" : "text-[#9CA3AF]"
+            }`}>
+              Saved
+              </button>
+          </div>
+
+
+          <div className="flex items-center gap-3">
+            <span className="text-[#9CA3AF]">Sort By</span>
+
+            <select 
+            value={sortBy}
+            onChange={(e) =>
+              setSortBy(
+                e.target.value as
+                | "minutes"
+                | "calories"
+                | "rating"
+              )
+            }
+            className="bg-[#171b23] border border-[#252a33] rounded-lg px-3 py-2 text-white outline-none cursor-pointer"
+            >
+              <option value="minutes">Minutes</option>
+              <option value="calories">Calories</option>
+              <option value="rating">Rating</option>
+            </select>
+            </div>
+        </div>
+
+        <div className="mt-6 space-y-4">
+          {exercises.map((item) => (
+            <PlanCard key={item.id} data={item} isSaved={activeTab === "saved"}
+            onViewDetails={setSelectedExercise}
+            />
+          ))}
+
+          {exercises.length === 0 && (
+            <div className="text-[#9CA3AF] text-center">
+              <p>No exercises found.</p>
+            </div>
+          )}
+
+        </div>
+
+        {selectedExercise && (
+          <div className="mt-8 border border-[#252a33] bg-[#13161c] rounded-2xl overflow-hidden">
+            <div className="flex justify-between items-center px-6 py-5 border-b border-[#252a33]">
+                <h2 className="text-white text-2xl font-bold uppercase">View Details</h2>
+            </div>
+
+            <button 
+            onClick={() => setSelectedExercise(null)}
+            className="text-white text-xl cursor-pointer"
+            >
+              icon
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

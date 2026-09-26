@@ -5,13 +5,30 @@ import { useContext } from "react";
 import { LuCalendarPlus } from "react-icons/lu";
 import { Bounce, toast } from "react-toastify";
 
-const AddToPlanBtn = ({ data }: { data: ILibraryType }) => {
+const AddToPlan = ({ data }: { data: ILibraryType }) => {
   const { addToPlan, setAddToPlan } = useContext(MyPlanContext);
+  
 
   const handleAddToPlan = () => {
-    console.log("add to plan triggered!!", data);
+    // console.log("add to plan triggered!!", data);
+    const alreadyAdded = addToPlan.some((item) => item.id === data.id);
+    if(alreadyAdded){
+      toast.error("Already in your plan",{
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+      });
+      return
+    }
 
     setAddToPlan([...addToPlan, data]);
+    
     toast.success(`Added to today's plan`, {
       position: "bottom-right",
       autoClose: 5000,
@@ -24,6 +41,7 @@ const AddToPlanBtn = ({ data }: { data: ILibraryType }) => {
       transition: Bounce,
     });
   };
+
   return (
     <button
       onClick={() => handleAddToPlan()}
@@ -35,4 +53,4 @@ const AddToPlanBtn = ({ data }: { data: ILibraryType }) => {
   );
 };
 
-export default AddToPlanBtn;
+export default AddToPlan;

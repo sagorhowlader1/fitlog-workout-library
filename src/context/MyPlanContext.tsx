@@ -1,11 +1,27 @@
 'use client';
+
+import { ILibraryType } from '@/types/type';
 import React, { createContext, ReactNode, useState } from 'react';
 
-export const MyPlanContext = createContext({});
+
+interface IMyPlanContext {
+    addToPlan: ILibraryType[];
+    setAddToPlan: React.Dispatch<React.SetStateAction<ILibraryType[]>>;
+    saveLater: ILibraryType[];
+    setSaveLater: React.Dispatch<React.SetStateAction<ILibraryType[]>>;
+
+}
+
+export const MyPlanContext = createContext({
+    addToPlan: [],
+    setAddToPlan: () => {},
+    saveLater: [],
+    setSaveLater: () => {},
+});
 
 const MyPlanProvider = ({children}: {children: ReactNode}) => {
-    const [addToPlan, setAddToPlan] = useState([]);
-    const [saveLater, setSaveLater] = useState([]);
+    const [addToPlan, setAddToPlan] = useState<ILibraryType[]>([]);
+    const [saveLater, setSaveLater] = useState<ILibraryType[]>([]);
 
     const sharedData = {
         addToPlan,
@@ -15,7 +31,9 @@ const MyPlanProvider = ({children}: {children: ReactNode}) => {
     };
 
     return (
-        <MyPlanContext.Provider value={sharedData}>{children}</MyPlanContext.Provider> 
+        <MyPlanContext.Provider value={sharedData}>
+            {children}
+        </MyPlanContext.Provider> 
     );
 };
 

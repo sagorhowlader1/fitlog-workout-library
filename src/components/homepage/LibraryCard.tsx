@@ -40,7 +40,7 @@ const LibraryCard = async ({ data }: ILibraryTypeProps) => {
                   alt="Image"
                   className="rounded-t-3xl"
                 />
-                <div className="ml-6 ">
+                <div className="ml-6">
                   <div className="flex items-center gap-2 py-5 uppercase">
                     {data.muscleGroups.map((muscle) => (
                       <p

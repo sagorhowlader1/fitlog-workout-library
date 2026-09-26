@@ -5,19 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
 import { MyPlanContext } from "@/context/MyPlanContext";
+import { ILibraryType } from "@/types/type";
 
 
-const Navbar = ({data}) => {
-  // const { addToPlan, saveLater } = useContext(MyPlanContext);
-const { addToPlan, setAddToPlan, saveLater, setSaveLater } = useContext(MyPlanContext);
-
-
-  const handleAddToPlan = () =>{
-    setAddToPlan([...addToPlan, data]);
-  };
-  const handleSaveLater = () =>{
-    setSaveLater([...saveLater, data]);
-  };
+const Navbar = ({data}: ILibraryType) => {
+  const { addToPlan, saveLater } = useContext(MyPlanContext);
+ 
   const pathname = usePathname()
   return (
     <div className="sticky top-0 z-50">
@@ -41,22 +34,24 @@ const { addToPlan, setAddToPlan, saveLater, setSaveLater } = useContext(MyPlanCo
               </li>
             </ul>
 
-            <div className="gap-4">
-                 <Link href="/my-plan">
+            <div className="gap-4 flex">
+                 <div>
+                  <Link href="/my-plan">
                      <button
-                        onClick={() => handleAddToPlan()}
-                        className="btn rounded-xl border-none bg-[#C2F800]"
-                      >Plan {`${addToPlan.length}`}
+                        className="btn rounded-xl border-none gap-6 bg-[#C2F800]"
+                      >Plan {addToPlan.length}
                   </button>
                  </Link>
+                 </div>
                   
-                  <Link href="/my-plan">
+                  <div>
+                    <Link href="/my-plan">
                   <button
-                        onClick={() => handleSaveLater()}
                         className="btn rounded-xl border-none bg-[#eaebe618] text-white"
-                      >Saved {`${saveLater.length}`}
+                      >Saved {saveLater.length}
                   </button>
                   </Link>
+                  </div>
             </div>
           </div>
         </nav>
