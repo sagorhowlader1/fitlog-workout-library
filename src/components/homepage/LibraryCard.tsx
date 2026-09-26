@@ -5,10 +5,10 @@ import Link from "next/link";
 import { FaRegClock, FaRegStar } from "react-icons/fa";
 import { FaFireFlameCurved } from "react-icons/fa6";
 
-interface ILibraryTypeProps {
-  data: ILibraryType;
-  id: number;
-};
+// interface ILibraryTypeProps {
+//   data: ILibraryType;
+//   id: number;
+// };
 
 const getLibraryCard = async() => {
    const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
@@ -16,7 +16,7 @@ const getLibraryCard = async() => {
   return data;
 };
 
-const LibraryCard = async ({ data }: ILibraryTypeProps) => {
+const LibraryCard = async () => {
   const libraryCard = await getLibraryCard();
   console.log(libraryCard, "data fetch!!");
   return (

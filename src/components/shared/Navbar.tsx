@@ -5,10 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
 import { MyPlanContext } from "@/context/MyPlanContext";
-import { ILibraryType } from "@/types/type";
 
 
-const Navbar = ({data}: ILibraryType) => {
+
+const Navbar = () => {
   const { addToPlan, saveLater } = useContext(MyPlanContext);
  
   const pathname = usePathname()

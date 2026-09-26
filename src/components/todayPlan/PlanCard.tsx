@@ -11,7 +11,6 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 
 interface ILibraryTypeProps {
   data: ILibraryType;
-  id: number;
   isSaved?: boolean;
   onViewDetails: (data: ILibraryType) => void;
 }
@@ -19,9 +18,9 @@ interface ILibraryTypeProps {
 const PlanCard = ({
   data,
   isSaved = false,
-  onViewDetails,
+
 }: ILibraryTypeProps) => {
-  const { addToPlan, setAddToPlan, saveLater, setSaveLater } =
+  const { setAddToPlan, setSaveLater } =
     useContext(MyPlanContext);
 
   const handleRemove = () => {
@@ -32,15 +31,15 @@ const PlanCard = ({
     }
   };
 
-  const handleAddToPlan = () => {
-    const alreadyExists = addToPlan.some((item) => item.id === data.id);
+  // const handleAddToPlan = () => {
+  //   const alreadyExists = addToPlan.some((item:ILibraryType) => item.id === data.id);
 
-    if (!alreadyExists) {
-      setAddToPlan((prev) => [...prev, data]);
-    }
+  //   if (!alreadyExists) {
+  //     setAddToPlan((prev) => [...prev, data]);
+  //   }
 
-    setSaveLater((prev) => prev.filter((item) => item.id !== data.id));
-  };
+  //   setSaveLater((prev) => prev.filter((item) => item.id !== data.id));
+  // };
 
   return (
     <div className="border border-[#252a33] bg-[#13161c] rounded-2xl p-4">

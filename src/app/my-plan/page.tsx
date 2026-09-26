@@ -22,12 +22,12 @@ const MyPlan = () => {
   const exercisesPlan = activeTab === "today" ? addToPlan : saveLater;
 
   const totalMinutes = exercisesPlan.reduce(
-    (total, item) => total + Number(item.duration),
+    (total, item:ILibraryType) => total + Number(item.duration),
     0,
   );
 
   const totalCalories = exercisesPlan.reduce(
-    (total, item) => total + Number(item.caloriesBurned),
+    (total, item:ILibraryType) => total + Number(item.caloriesBurned),
     0,
   );
 
@@ -35,14 +35,14 @@ const MyPlan = () => {
     const list = activeTab === "today" ? [...addToPlan] : [...saveLater];
 
     if (sortBy === "minutes") {
-      return list.sort((a, b) => b.duration - a.duration);
+      return list.sort((a:ILibraryType, b:ILibraryType) => b.duration - a.duration);
     }
 
     if (sortBy === "calories") {
-      return list.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+      return list.sort((a:ILibraryType, b:ILibraryType) => b.caloriesBurned - a.caloriesBurned);
     }
 
-    return list.sort((a, b) => b.rating - a.rating);
+    return list.sort((a:ILibraryType, b:ILibraryType) => b.rating - a.rating);
   }, [activeTab, addToPlan, saveLater, sortBy]);
 
   return (
@@ -123,7 +123,7 @@ const MyPlan = () => {
         </div>
 
         <div className="mt-6 space-y-4">
-          {exercises.map((item) => (
+          {exercises.map((item:ILibraryType) => (
             <PlanCard
               key={item.id}
               data={item}
