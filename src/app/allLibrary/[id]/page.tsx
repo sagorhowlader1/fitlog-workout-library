@@ -27,7 +27,7 @@ const LibarayDetailsPage = async ({ params }: IDetailsPageProps) => {
       <div className="py-10 px-10">
         <div className="card lg:card-side shadow-sm">
           <figure className="rounded-2xl">
-            <Image width={950} height={200} src={data.image} alt="Image" />
+            <Image width={800} height={180} src={data.image} alt="Image" />
           </figure>
           <div className="ml-12">
             <h2 className="text-white text-3xl uppercase font-bold">

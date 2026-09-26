@@ -15,13 +15,8 @@ interface ILibraryTypeProps {
   onViewDetails: (data: ILibraryType) => void;
 }
 
-const PlanCard = ({
-  data,
-  isSaved = false,
-
-}: ILibraryTypeProps) => {
-  const { setAddToPlan, setSaveLater } =
-    useContext(MyPlanContext);
+const PlanCard = ({ data, isSaved = false }: ILibraryTypeProps) => {
+  const { setAddToPlan, setSaveLater } = useContext(MyPlanContext);
 
   const handleRemove = () => {
     if (isSaved) {
@@ -30,16 +25,6 @@ const PlanCard = ({
       setAddToPlan((prev) => prev.filter((item) => item.id !== data.id));
     }
   };
-
-  // const handleAddToPlan = () => {
-  //   const alreadyExists = addToPlan.some((item:ILibraryType) => item.id === data.id);
-
-  //   if (!alreadyExists) {
-  //     setAddToPlan((prev) => [...prev, data]);
-  //   }
-
-  //   setSaveLater((prev) => prev.filter((item) => item.id !== data.id));
-  // };
 
   return (
     <div className="border border-[#252a33] bg-[#13161c] rounded-2xl p-4">
@@ -72,7 +57,8 @@ const PlanCard = ({
         </div>
 
         <div className="flex items-center gap-3">
-          <Link href={`/allLibrary/${data.id}`}
+          <Link
+            href={`/allLibrary/${data.id}`}
             className="px-5 py-2  border cursor-pointer border-[#374151] rounded-full
             text-white text-sm"
           >

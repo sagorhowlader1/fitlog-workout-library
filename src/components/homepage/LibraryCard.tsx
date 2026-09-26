@@ -1,14 +1,9 @@
 import { ILibraryType } from "@/types/type";
-
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegClock, FaRegStar } from "react-icons/fa";
 import { FaFireFlameCurved } from "react-icons/fa6";
 
-// interface ILibraryTypeProps {
-//   data: ILibraryType;
-//   id: number;
-// };
 
 const getLibraryCard = async() => {
    const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
