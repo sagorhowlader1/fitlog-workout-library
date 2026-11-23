@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useContext, useState } from "react";
 import { MyPlanContext } from "@/context/MyPlanContext";
 import { RxHamburgerMenu } from "react-icons/rx";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const { addToPlan, saveLater } = useContext(MyPlanContext);
@@ -14,12 +15,12 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="sticky top-0 z-50">
-      <div className="bg-[#000000] py-5">
-        <nav className="container mx-auto px-4 sm:px-6">
+      <div className="bg-page py-4 sm:py-5">
+        <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <div className="flex justify-between items-center gap-5">
               <Link href="/">
-                <span className="flex justify-between items-center gap-3 text-2xl text-white font-bold">
+                <span className="flex justify-between items-center gap-2 sm:gap-3 text-xl sm:text-2xl text-ink font-bold">
                   <Image src={Logo} width={40} height={40} alt="Logo" />
                   FITLOG
                 </span>
@@ -29,7 +30,7 @@ const Navbar = () => {
               <li
                 className={
                   pathname === "/"
-                    ? "text-[#C2F800] py-2 px-4 rounded-2xl bg-[#c2f80021]"
+                    ? "text-brand-text py-2 px-4 rounded-2xl bg-brand-soft"
                     : ""
                 }
               >
@@ -38,7 +39,7 @@ const Navbar = () => {
               <li
                 className={
                   pathname === `/my-plan`
-                    ? "text-[#C2F800] py-2 px-4 rounded-2xl bg-[#c2f80021]"
+                    ? "text-brand-text py-2 px-4 rounded-2xl bg-brand-soft"
                     : ""
                 }
               >
@@ -46,31 +47,36 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <div className="hidden gap-4 md:flex">
-              <div>
-                <Link href="/my-plan">
-                  <button className="btn rounded-xl border-none gap-6 bg-[#C2F800]">
-                    Plan {addToPlan.length}
-                  </button>
-                </Link>
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+
+              <div className="hidden gap-4 md:flex">
+                <div>
+                  <Link href="/my-plan">
+                    <button className="btn rounded-xl border-none gap-6 bg-brand text-brand-ink">
+                      Plan {addToPlan.length}
+                    </button>
+                  </Link>
+                </div>
+
+                <div>
+                  <Link href="/my-plan">
+                    <button className="btn rounded-xl border-none bg-ghost text-ink">
+                      Saved {saveLater.length}
+                    </button>
+                  </Link>
+                </div>
               </div>
 
-              <div>
-                <Link href="/my-plan">
-                  <button className="btn rounded-xl border-none bg-[#eaebe618] text-white">
-                    Saved {saveLater.length}
-                  </button>
-                </Link>
+              <div className="md:hidden">
+                <button
+                  onClick={() => setIsOpen(!isOpen)}
+                  aria-label="Toggle menu"
+                  className="text-ink text-3xl"
+                >
+                  <RxHamburgerMenu />
+                </button>
               </div>
-            </div>
-
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="text-white text-3xl"
-              >
-                <RxHamburgerMenu />
-              </button>
             </div>
           </div>
 
@@ -81,8 +87,8 @@ const Navbar = () => {
                 onClick={() => setIsOpen(false)}
                 className={
                   pathname === "/"
-                    ? "text-[#C2F800] py-3 px-4 rounded-xl bg-[#c2f80021]"
-                    : "text-white py-3 px-4 rounded-xl"
+                    ? "text-brand-text py-3 px-4 rounded-xl bg-brand-soft"
+                    : "text-ink py-3 px-4 rounded-xl"
                 }
               >
                 Workouts
@@ -93,20 +99,20 @@ const Navbar = () => {
                 onClick={() => setIsOpen(false)}
                 className={
                   pathname === "/my-plan"
-                    ? "text-[#C2F800] py-3 px-4 rounded-xl bg-[#c2f80021]"
-                    : "text-white py-3 px-4 rounded-xl"
+                    ? "text-brand-text py-3 px-4 rounded-xl bg-brand-soft"
+                    : "text-ink py-3 px-4 rounded-xl"
                 }
               >
                 My Plan
               </Link>
 
               <Link href="/my-plan" onClick={() => setIsOpen(false)}>
-                <button className="btn w-full rounded-xl border-none bg-[#C2F800]">
+                <button className="btn w-full rounded-xl border-none bg-brand text-brand-ink">
                   Plan {addToPlan.length}
                 </button>
               </Link>
               <Link href="/my-plan" onClick={() => setIsOpen(false)}>
-                <button className="btn w-full rounded-xl border-none bg-[#C2F800]">
+                <button className="btn w-full rounded-xl border-none bg-ghost text-ink">
                   Saved {saveLater.length}
                 </button>
               </Link>
@@ -115,7 +121,7 @@ const Navbar = () => {
         </nav>
       </div>
 
-      <div className="h-px bg-[#9ca3af3f]"></div>
+      <div className="h-px bg-divider"></div>
     </div>
   );
 };

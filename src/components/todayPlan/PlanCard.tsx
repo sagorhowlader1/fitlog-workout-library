@@ -27,55 +27,54 @@ const PlanCard = ({ data, isSaved = false }: ILibraryTypeProps) => {
   };
 
   return (
-    <div className="border border-[#252a33] bg-[#13161c] rounded-2xl p-4">
-      <div className="flex items-center gap-5">
+    <div className="rounded-2xl border border-line bg-surface-2 p-3 sm:p-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
         <Image
           src={data.image}
           width={140}
           height={90}
           alt={data.name}
-          className="rounded-t-xl object-cover"
+          className="h-40 w-full rounded-xl object-cover sm:h-24 sm:w-36"
         />
 
         <div className="flex-1">
-          <p className="text-white text-2xl uppercase font-bold">{data.name}</p>
-          <p className="text-[#9CA3AF]">{data.equipment}</p>
+          <p className="text-xl font-bold uppercase text-ink sm:text-2xl">
+            {data.name}
+          </p>
+          <p className="text-muted">{data.equipment}</p>
 
-          <div className="flex gap-6 mt-4">
-            <p className="flex  gap-2 items-center text-[#9CA3AF]">
-              <FaRegClock className="text-[#C2F800]" />
+          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 sm:mt-4">
+            <p className="flex items-center gap-2 text-muted">
+              <FaRegClock className="text-brand-text" />
               {data.duration} min
             </p>
-            <p className="flex gap-2 items-center text-[#9CA3AF]">
-              <FaFireFlameCurved className="text-[#C2F800]" />
+            <p className="flex items-center gap-2 text-muted">
+              <FaFireFlameCurved className="text-brand-text" />
               {data.caloriesBurned} kcal
             </p>
-            <p className="flex justify-between gap-2 items-center text-[#9CA3AF]">
-              <FaRegStar className="text-[#C2F800]" /> {data.rating}
+            <p className="flex items-center gap-2 text-muted">
+              <FaRegStar className="text-brand-text" /> {data.rating}
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <Link
             href={`/allLibrary/${data.id}`}
-            className="px-5 py-2  border cursor-pointer border-[#374151] rounded-full
-            text-white text-sm"
+            className="cursor-pointer rounded-full border border-edge px-4 py-2 text-sm text-ink sm:px-5"
           >
             View Details
           </Link>
 
           {!isSaved && (
-            <button
-              className="flex items-center gap-1 cursor-pointer px-3 mx-2.5 py-2 bg-[#C2F800] rounded-full text-black
-            text-sm font-medium"
-            >
+            <button className="mx-0 flex cursor-pointer items-center gap-1 rounded-full bg-brand px-3 py-2 text-sm font-medium text-black sm:mx-2.5">
               <IoCheckmarkSharp /> Mark as Done
             </button>
           )}
           <button
-            className="cursor-pointer hover:text-[#525352f6]"
+            className="cursor-pointer hover:text-hover-ink"
             onClick={handleRemove}
+            aria-label={`Remove ${data.name}`}
           >
             <FaXmark />
           </button>

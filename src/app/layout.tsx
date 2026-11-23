@@ -25,12 +25,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#000000] text-white">
+      <body className="min-h-full flex flex-col bg-page text-ink">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem("fitlog-theme")==="light"){document.documentElement.dataset;}}catch(e){}`,
+          }}
+        />
         <MyPlanProvider>
         <Navbar/>
-        {children}
+        <main className="flex-1">{children}</main>
         <Footer />
          <ToastContainer />
         </MyPlanProvider>

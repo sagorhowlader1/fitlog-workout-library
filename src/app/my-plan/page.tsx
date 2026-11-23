@@ -46,48 +46,48 @@ const MyPlan = () => {
   }, [activeTab, addToPlan, saveLater, sortBy]);
 
   return (
-    <div className="container mx-auto">
-      <div className="py-16">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-10 sm:py-16">
         <div>
-          <h2 className="uppercase font-bold text-4xl">My Plan</h2>
-          <p className="text-[#9CA3AF] py-2">
+          <h2 className="text-3xl font-bold uppercase sm:text-4xl">My Plan</h2>
+          <p className="py-2 text-muted">
             Cap of five lifts for today. Finish them, then load more.
           </p>
         </div>
 
-        <div className="mt-6 border border-[#252a33] bg-[#13161c] rounded-2xl p-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-6 rounded-2xl border border-line bg-surface-2 p-5 sm:p-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
             <div>
-              <p className="text-[#9CA3AF]">Exercisec</p>
-              <h2 className="text-[#C2F800] text-4xl font-bold mt-2">
+              <p className="text-muted">Exercisec</p>
+              <h2 className="mt-2 text-3xl font-bold text-brand-text sm:text-4xl">
                 {exercisesPlan.length}
               </h2>
             </div>
 
-            <div className="border-y md:border-y-0 md:border-x border-[#252a33] px-0 md:px-8 py-6 md:py-0">
-              <p className="text-[#9CA3AF]">Miuntes</p>
-              <h2 className="text-white text-4xl font-bold mt-2">
+            <div className="border-y border-line px-0 py-5 md:border-y-0 md:border-x md:px-8 md:py-0">
+              <p className="text-muted">Miuntes</p>
+              <h2 className="mt-2 text-3xl font-bold text-ink sm:text-4xl">
                 {totalMinutes}
               </h2>
             </div>
 
             <div>
-              <p className="text-[#9CA3AF]">Calories</p>
-              <h2 className="text-white text-4xl font-bold mt-2">
+              <p className="text-muted">Calories</p>
+              <h2 className="mt-2 text-3xl font-bold text-ink sm:text-4xl">
                 {totalCalories}
               </h2>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 flex justify-between items-center">
-          <div className="flex bg-[#171b23] rounded-xl p-1">
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex self-start rounded-xl bg-surface-3 p-1">
             <button
               onClick={() => setActiveTab("today")}
-              className={`px-5 py-2 rounded-lg cursor-pointer ${
+              className={`flex-1 cursor-pointer rounded-lg px-4 py-2 text-sm sm:flex-none sm:px-5 sm:text-base ${
                 activeTab === "today"
-                  ? "bg-[#252a33] text-white"
-                  : "text-[#9CA3AF]"
+                  ? "bg-line text-ink"
+                  : "text-muted"
               }`}
             >
               {`Today's`} Plan
@@ -95,10 +95,10 @@ const MyPlan = () => {
 
             <button
               onClick={() => setActiveTab("saved")}
-              className={`px-5 py-2 rounded-lg cursor-pointer ${
+              className={`flex-1 cursor-pointer rounded-lg px-4 py-2 text-sm sm:flex-none sm:px-5 sm:text-base ${
                 activeTab === "saved"
-                  ? "bg-[#252a33] text-white"
-                  : "text-[#9CA3AF]"
+                  ? "bg-line text-ink"
+                  : "text-muted"
               }`}
             >
               Saved
@@ -106,14 +106,14 @@ const MyPlan = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-[#9CA3AF]">Sort By</span>
+            <span className="text-muted">Sort By</span>
 
             <select
               value={sortBy}
               onChange={(e) =>
                 setSortBy(e.target.value as "minutes" | "calories" | "rating")
               }
-              className="bg-[#171b23] border border-[#252a33] rounded-lg px-3 py-2 text-white outline-none cursor-pointer"
+              className="cursor-pointer rounded-lg border border-line bg-surface-3 px-3 py-2 text-ink outline-none"
             >
               <option value="minutes">Minutes</option>
               <option value="calories">Calories</option>
@@ -133,15 +133,17 @@ const MyPlan = () => {
           ))}
 
           {exercises.length === 0 && (
-            <div className="text-[#9CA3AF] flex-col justify-center text-center bg-[#26272738] mt-6 border border-[#252a335d]  rounded-2xl p-28 ">
-              <h2 className="text-white font-bold text-2xl">
+            <div className="mt-6 flex flex-col items-center justify-center rounded-2xl border border-line-soft bg-empty p-10 text-center sm:p-20">
+              <h2 className="text-xl font-bold text-ink sm:text-2xl">
                 NOTHING HERE YET
               </h2>
-              <p className="text-[#9CA3AF] pb-4">
+              <p className="pb-4 text-muted">
                 Browse the library and add a lift to get today moving.
               </p>
-              <Link href="/"
-              className="items-center gap-1 cursor-pointer px-3 mx-2.5 py-2 bg-[#C2F800] rounded-full text-black text-sm font-medium"> 
+              <Link
+                href="/"
+                className="inline-block cursor-pointer rounded-full bg-brand px-5 py-2 text-sm font-medium text-black"
+              >
                 Go to workouts
               </Link>
             </div>
@@ -149,16 +151,16 @@ const MyPlan = () => {
         </div>
 
         {selectedExercise && (
-          <div className="mt-8 border border-[#252a33] bg-[#13161c] rounded-2xl overflow-hidden">
-            <div className="flex justify-between items-center px-6 py-5 border-b border-[#252a33]">
-              <h2 className="text-white text-2xl font-bold uppercase">
+          <div className="mt-8 border border-line bg-surface-2 rounded-2xl overflow-hidden">
+            <div className="flex justify-between items-center px-6 py-5 border-b border-line">
+              <h2 className="text-ink text-2xl font-bold uppercase">
                 View Details
               </h2>
             </div>
 
             <button
               onClick={() => setSelectedExercise(null)}
-              className="text-white text-xl cursor-pointer"
+              className="text-ink text-xl cursor-pointer"
             >
             </button>
           </div>

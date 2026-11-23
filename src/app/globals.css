@@ -1,2 +1,62 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* Design tokens — dark (default) theme */
+@theme {
+  /* page + surfaces */
+  --color-page: #000000;
+  --color-surface: #15171d;
+  --color-surface-2: #13161c;
+  --color-surface-3: #171b23;
+  --color-skeleton: #1b1f27;
+  --color-empty: #26272738;
+
+  /* lines + borders */
+  --color-line: #252a33;
+  --color-line-soft: #252a335d;
+  --color-divider: #9ca3af3f;
+  --color-edge: #374151;
+
+  /* text */
+  --color-ink: #ffffff;
+  --color-muted: #9ca3af;
+  --color-hover-ink: #525352f6;
+
+  /* accent */
+  --color-brand: #c2f800;
+  --color-brand-ink: #000000;
+  --color-brand-text: #c2f800;
+  --color-brand-soft: #c2f80021;
+  --color-ghost: #eaebe618;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-page: #f4f5f0;
+  --color-surface: #ffffff;
+  --color-surface-2: #ffffff;
+  --color-surface-3: #e9ebe2;
+  --color-skeleton: #e4e6dc;
+  --color-empty: #00000010;
+
+  --color-line: #dfe1d6;
+  --color-line-soft: #dfe1d6;
+  --color-divider: #00000024;
+  --color-edge: #a8ad9c;
+
+  --color-ink: #14160f;
+  --color-muted: #575d4e;
+  --color-hover-ink: #575d4e;
+
+  --color-brand: #c2f800;
+  --color-brand-ink: #000000;
+  --color-brand-text: #4c6b00;
+  --color-brand-soft: #c2f80066;
+  --color-ghost: #00000014;
+}

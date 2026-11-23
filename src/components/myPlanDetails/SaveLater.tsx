@@ -42,7 +42,7 @@ const SaveLater = ({ data }: { data: ILibraryType }) => {
   return (
     <button
       onClick={() => handleSaveLater()}
-      className="btn rounded-xl border-none bg-[#eaebe618] text-white"
+      className="btn rounded-xl border-none bg-ghost text-ink"
     >
       <GoBookmark />
       Save for later

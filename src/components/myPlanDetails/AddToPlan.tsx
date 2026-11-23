@@ -44,7 +44,7 @@ const AddToPlan = ({ data }: { data: ILibraryType }) => {
   return (
     <button
       onClick={() => handleAddToPlan()}
-      className="btn rounded-xl border-none bg-[#C2F800]"
+      className="btn rounded-xl border-none bg-brand text-brand-ink"
     >
       <LuCalendarPlus />
       Add to {`today's`} plan
